@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jose Lechuga">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">Login Registration</div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="/courses">Courses</a></li>
+            <!--<li><a href="#">Dashboard</a></li>-->
+            <!--<li><a href="#">Settings</a></li>-->
+              {% if request.session.user %}
+            <li><a href="/account">{{ request.session.user.name }}</a></li>
+            <li><a href="/">Logout</a></li>
+              {% endif %}
+          </ul>
+          <!--<form class="navbar-form navbar-right">-->
+            <!--<input type="text" class="form-control" placeholder="Search...">-->
+          <!--</form>-->
+        </div>
+      </div>
+             </nav>
+
+        <div class="jumbotron">
+        <h3>This is a test page after logging in. if you are seeing this then it worked, Thank you for testing this App.</h3>
+        </div>
+    <div class="row">
+        <h4> This is some interesting Bacon knowledge to feed your brain, Enjoy!!</h4>
+            <p>Bacon ipsum dolor amet spare ribs capicola meatball alcatra. Flank tenderloin hamburger landjaeger cow pig, ham hock pork belly. Kielbasa tenderloin boudin turkey, andouille turducken swine picanha cow. Ribeye shoulder burgdoggen salami t-bone. Filet mignon ham sausage, shoulder strip steak chuck pork chop salami shankle pork loin bacon shank. Flank chicken pork chop filet mignon meatball capicola pork loin tongue, bacon bresaola short ribs ribeye spare ribs.</p>
+<!--<nav>-->
+        <!--<ul class="nav nav-pills">-->
+          <!--<li role="presentation" class="active"><a href="/">Home</a></li>-->
+          <!--<li><a href="/courses">Courses</a></li>-->
+          <!--<li><a href="/ninja_gold">Ninja Gold</a></li>-->
+          <!--{% if request.session.user %}-->
+          <!--<li class="pull-right">-->
+            <!--<h5>Hello - {{ request.session.user.name }} </h5>-->
+          <!--</li>-->
+            <!--<li class="pull-right">-->
+            <!--<h5><a href="/">Logout</a></h5>-->
+          <!--</li>-->
+          <!--{% endif %}-->
+        <!--</ul>-->
+      <!--</nav>-->
+        </div>
+</div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

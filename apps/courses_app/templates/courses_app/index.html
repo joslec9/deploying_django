@@ -1,0 +1,130 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+
+    </script>
+    <title>Courses</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Courses</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              {% if request.session.user %}
+            <li class="active"><a href="/account">{{ request.session.user.name }}</a></li>
+            <li><a href="/">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+      <!--<nav>-->
+        <!--<ul class="nav nav-pills">-->
+          <!--<li><a href="/">Home</a></li>-->
+          <!--<li role="presentation" class="active"><a href="/courses">Courses</a></li>-->
+          <!--&lt;!&ndash;<li><a href="/ninja_gold">Ninja Gold</a></li>&ndash;&gt;-->
+        <!--</ul>-->
+      <!--</nav>-->
+      {% if messages %}
+      <div class="row">
+        <ul>
+          {% for error in messages %}
+          <li>  {{ error }} </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-5">
+          <h3>Add a course</h3>
+          <form class="" action="/courses/add" method="post">
+            {% csrf_token %}
+            <div class="col-md-12 form-group">
+              <label for="name">Name</label>
+              <input type="text" name="name" class="form-control" value="">
+            </div>
+            <div class="col-md-12 form-group">
+              <label for="description">Description</label>
+              <textarea name="description" rows="3" cols="80" class="form-control" ></textarea>
+            </div>
+
+            <button type="submit" name="button">Add Course</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h3>Assign users to a course</h3>
+          <form class="" action="/courses/assign_user" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="user">Courses</label>
+              <select class="form-control" name="course">
+                <option value="">Select a Course</option>
+                {% for course in courses %}
+                  <option value="{{ course.id }}">{{ course.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="user">Users</label>
+              <select class="form-control" name="user">
+                  <option value="">Select a User</option>
+                {% for user in users %}
+                  <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" name="button">Add User to the course</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <h3>courses</h3>
+        <table class="table table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Course Name</th>
+              <th> Description </th>
+              <th>Date Added </th>
+              <th>Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for course in courses %}
+            <tr>
+              <td>{{ course.name }}</td>
+              <td>{{ course.description}}</td>
+              <td>{{ course.created_at }}</td>
+              {% for users in course_users %}
+                {% if users.course == course.id %}
+                  <td>{{users.total }}</td>
+                {% endif %}
+              {% endfor %}
+              <td><a href="confirm_destroy/{{ course.id }}">Remove</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+
+  </body>
+</html>

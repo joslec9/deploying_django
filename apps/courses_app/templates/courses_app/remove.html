@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+
+    </script>
+    <title>{{ course.name }}</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-4 col-md-8 ">
+          <h3>Are you sure you want to delete the following course?</h3>
+          <p>Name: {{ course.name }} </p>
+          <p>Description: {{ course.description }}</p>
+          <div class="row">
+            <a href="/course" class="btn btn-primary">No</a>  <a href="../destroy/{{ course.id }}" class="btn btn-danger">Yes! I want to delete this</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
